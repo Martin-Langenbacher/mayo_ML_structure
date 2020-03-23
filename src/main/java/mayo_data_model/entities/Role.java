@@ -1,9 +1,15 @@
 package mayo_data_model.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,8 +33,14 @@ public class Role {
 	private boolean isDriver;
 	
 	
-	//Draft ....
-	// OneToMany: --> Person
+	
+	
+	// ManyToMany: --> user
+	@ManyToMany
+	@JoinTable(name = "role_user",
+	joinColumns = @JoinColumn(name="role_id"),
+	inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> users = new ArrayList<>();
 	
 	
 	
